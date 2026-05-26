@@ -1,0 +1,168 @@
+/* ==========================================================================
+   1. VARIABLES & CONFIGURATION GENERALE
+   ========================================================================== */
+:root {
+    --rose-clair: #ffd6e8;
+    --rose-fonce: #ffb3cc;
+    --rouge-coeur: #e60028;
+    --ombre: rgba(0, 0, 0, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top left, #ffe1f1 0%, var(--rose-clair) 35%, var(--rose-fonce) 100%);
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden; /* Crucial pour éviter les barres de défilement à cause des étoiles */
+}
+
+.page {
+    text-align: center;
+    padding: 24px;
+    position: relative;
+    z-index: 1; /* Place le contenu au-dessus du ciel étoilé */
+}
+
+.message {
+    margin-top: 18px;
+    font-size: 1rem;
+    color: #5f2a3d;
+    letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   2. BOUTON CŒUR & ANIMATION DE BATTEMENT
+   ========================================================================== */
+.heart-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 20px 40px var(--ombre);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.heart-button:hover {
+    transform: scale(1.04);
+}
+
+.heart {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    transform: rotate(-45deg);
+    animation: battre 1s ease-in-out infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background: var(--rouge-coeur);
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -65px;
+    left: 0;
+}
+
+.heart::after {
+    left: 65px;
+    top: 0;
+}
+
+.heart-inset {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130px;
+    height: 130px;
+    background: var(--rouge-coeur);
+    border-radius: 0 0 25px 25px;
+}
+
+@keyframes battre {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    25% { transform: rotate(-45deg) scale(1.08); }
+    50% { transform: rotate(-45deg) scale(0.92); }
+    75% { transform: rotate(-45deg) scale(1.04); }
+}
+
+/* ==========================================================================
+   3. EFFET DE FOND : CIEL ET ÉTOILES FILANTES
+   ========================================================================== */
+.sky {
+    position: fixed;
+    inset: 0;
+    pointer-events: none; /* Permet de cliquer sur les boutons à travers le ciel */
+    overflow: hidden;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,0));
+    opacity: 0.85;
+    border-radius: 999px;
+    transform: rotate(25deg) translateX(-50%);
+    filter: blur(1px);
+    box-shadow: 0 0 16px rgba(255,255,255,0.55);
+}
+
+/* Positions initiales et configurations des animations */
+.star-1 { left: 8%; top: 10%; animation: drift-1 4.6s ease-in-out 0s infinite; }
+.star-2 { left: 85%; top: 18%; animation: drift-2 5.2s ease-in-out 0.9s infinite; }
+.star-3 { left: 18%; top: 50%; animation: drift-3 6.1s ease-in-out 1.6s infinite; }
+.star-4 { left: 76%; top: 60%; animation: drift-4 5.7s ease-in-out 0.3s infinite; }
+.star-5 { left: 30%; top: 24%; animation: drift-5 4.9s ease-in-out 1.2s infinite; }
+.star-6 { left: 58%; top: 8%; animation: drift-6 6.4s ease-in-out 0.5s infinite; }
+
+/* Trajectoires de défilement (Drift) */
+@keyframes drift-1 {
+    0% { opacity: 0; transform: rotate(25deg) translateX(-50%) translateY(0) scaleY(0.5); }
+    20% { opacity: 0.9; }
+    100% { opacity: 0; transform: rotate(25deg) translateX(270px) translateY(220px) scaleY(1); }
+}
+@keyframes drift-2 {
+    0% { opacity: 0; transform: rotate(-30deg) translateX(-50%) translateY(0) scaleY(0.5); }
+    20% { opacity: 0.9; }
+    100% { opacity: 0; transform: rotate(-30deg) translateX(-260px) translateY(200px) scaleY(1); }
+}
+@keyframes drift-3 {
+    0% { opacity: 0; transform: rotate(16deg) translateX(-50%) translateY(0) scaleY(0.5); }
+    20% { opacity: 0.9; }
+    100% { opacity: 0; transform: rotate(16deg) translateX(210px) translateY(120px) scaleY(1); }
+}
+@keyframes drift-4 {
+    0% { opacity: 0; transform: rotate(-20deg) translateX(-50%) translateY(0) scaleY(0.5); }
+    20% { opacity: 0.9; }
+    100% { opacity: 0; transform: rotate(-20deg) translateX(-210px) translateY(150px) scaleY(1); }
+}
+@keyframes drift-5 {
+    0% { opacity: 0; transform: rotate(18deg) translateX(-50%) translateY(0) scaleY(0.5); }
+    20% { opacity: 0.9; }
+    100% { opacity: 0; transform: rotate(18deg) translateX(240px) translateY(170px) scaleY(1); }
+}
+@keyframes drift-6 {
+    0% { opacity: 0; transform: rotate(-14deg) translateX(-50%) translateY(0) scaleY(0.5); }
+    20% { opacity: 0.9; }
+    100% { opacity: 0; transform: rotate(-14deg) translateX(-200px) translateY(190px) scaleY(1); }
+}
