@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise</title>
+    <link rel="stylesheet" href="../css/cssp.css">
+    <style>
+        /* Style du lien secret au repos */
+        .card p a.secret-link {
+            color: inherit !important;       /* Même couleur que le texte autour */
+            background: none !important;     /* Pas de fond rouge */
+            padding: 0 !important;           /* Pas d'espacement de bouton */
+            border-radius: 0 !important;     /* Pas d'arrondi */
+            display: inline !important;      /* Reste dans la ligne du texte */
+            text-decoration: none !important;/* Pas de soulignement */
+            cursor: text !important;         /* Le curseur reste une barre de texte */
+            box-shadow: none !important;     /* Pas d'ombre */
+            transform: none !important;      /* Pas de mouvement */
+        }
+        
+        /* CORRECTION ICI : Style du lien secret quand on passe la souris dessus */
+        .card p a.secret-link:hover {
+            color: inherit !important;       /* RESTE DE LA MÊME COULEUR, ne devient plus rouge */
+            cursor: pointer !important;      /* OPTIONNEL : change le curseur en petite main pour qu'elle puisse cliquer si elle trouve le mot */
+            background: none !important;     /* Garde le fond transparent */
+            transform: none !important;      /* Pas de mouvement */
+            box-shadow: none !important;     /* Pas d'ombre */
+        }
+    </style>
+</head>
+<body>
+    <div class="sky">
+        <span class="star star-1"></span>
+        <span class="star star-2"></span>
+        <span class="star star-3"></span>
+        <span class="star star-4"></span>
+        <span class="star star-5"></span>
+        <span class="star star-6"></span>
+    </div>
+    <div class="card">
+        <h1>La lettre du coup</h1>
+        <p>
+           <strong><i>Indice</i></strong> : Clic <br>
+           <strong><i>Indice</i></strong>' : Je t'aime<br>
+           <strong><i>Indice</i></strong>'' : Lache enleve tout tes vetements<br>
+           <strong><i>Indice</i></strong>''': Prout<br>
+        </p>
+        <a href="p5.html"class="btn-retour">Retour</a>
+        <a href="https://fr.wikipedia.org/wiki/Sylvain_Durif"class="btn-indice"> <strong><i>SUPER INDICE</i></strong></a>
+    </div>
+    
+</body>
+</html>
